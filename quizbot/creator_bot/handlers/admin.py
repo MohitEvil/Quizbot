@@ -12,7 +12,7 @@ import logging
 import time
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, LinkPreviewOptions
 
 from quizbot.database import (
     LeaderboardRepository,
@@ -159,13 +159,13 @@ async def start_cmd(c: Client, m: Message) -> None:
 @ratelimit("default")
 async def help_cmd(c: Client, m: Message) -> None:
     """/help -- full command reference."""
-    await m.reply(HELP_TEXT, disable_web_page_preview=True)
+    await m.reply(HELP_TEXT, link_preview_options=LinkPreviewOptions(is_disabled=True))
 
 
 @ratelimit("default")
 async def features_cmd(c: Client, m: Message) -> None:
     """/features -- short marketing-style feature overview."""
-    await m.reply(FEATURES_TEXT, disable_web_page_preview=True)
+    await m.reply(HELP_TEXT, link_preview_options=LinkPreviewOptions(is_disabled=True))
 
 
 async def limit_cmd(c: Client, m: Message) -> None:
